@@ -1,0 +1,2 @@
+awsscout2
+Pillow
