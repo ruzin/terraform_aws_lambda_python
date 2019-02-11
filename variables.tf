@@ -34,7 +34,7 @@ variable "source_code_path" {
 }
 
 variable "output_path" {
-  description = "Path to the function's deployment package within local filesystem. eg: /path/to/lamba.zip"
+  description = "Path to the function's deployment package within local filesystem. eg: /path/to/lambda.zip"
   default     = "lambda.zip"
 }
 

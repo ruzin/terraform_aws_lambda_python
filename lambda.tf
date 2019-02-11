@@ -1,3 +1,9 @@
+resource "random_string" "name" {
+  length  = 4
+  special = false
+  upper   = false
+}
+
 data "archive_file" "dir_hash_zip" {
   type        = "zip"
   source_dir  = "${var.source_code_path}/"
@@ -15,9 +21,11 @@ resource "null_resource" "install_python_dependencies" {
 
     environment {
       source_code_path = "${var.source_code_path}"
+      path_cwd         = "${path.cwd}"
       path_module      = "${path.module}"
       runtime          = "${var.runtime}"
       function_name    = "${var.function_name}"
+      random_string    = "${random_string.name.result}"
     }
   }
 }
@@ -25,7 +33,7 @@ resource "null_resource" "install_python_dependencies" {
 data "archive_file" "lambda_zip" {
   depends_on  = ["null_resource.install_python_dependencies"]
   type        = "zip"
-  source_dir  = "${path.module}/source_code/"
+  source_dir  = "${path.cwd}/lambda_pkg_${random_string.name.result}/"
   output_path = "${var.output_path}"
 }
 
