@@ -1,9 +1,5 @@
 ## Purpose
-A module that allows you to cleanly package your lambda source code and dependencies.
-
-## Functionality
-- The module hashes your source code directory and will re-package your function if there are any changes to either your source code dir or requirements.txt file.
-- In addition, it will also install any new dependencies following a change in the requirements.txt file.
+A module that allows you to cleanly package your python source code and dependencies into a zipped lambda function.
 
 ## Pre-requisites
 - [Install virtualenv](https://sourabhbajaj.com/mac-setup/Python/virtualenv.html)
