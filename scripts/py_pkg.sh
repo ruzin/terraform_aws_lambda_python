@@ -31,6 +31,6 @@ if [ -f $GIT_FILE ]; then
   echo '#ignore lambda_pkg dir' >> $path_cwd/.gitignore
   echo $dir_name >> $path_cwd/.gitignore
 else
-  echo '#ignore lambda_pkg dir' > .gitignore
-  echo $dir_name > .gitignore
+  echo '#ignore lambda_pkg dir' > $path_cwd/.gitignore
+  echo $dir_name > $path_cwd/.gitignore
 fi
