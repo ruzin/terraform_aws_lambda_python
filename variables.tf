@@ -21,7 +21,7 @@ variable "memory_size" {
 
 variable "runtime" {
   description = "runtime"
-  default     = "python2.7"
+  default     = "python3.7"
 }
 
 variable "timeout" {
@@ -40,6 +40,12 @@ variable "output_path" {
 
 variable "environment" {
   description = "Environment configuration for the Lambda function"
-  type        = "map"
+  type        = map
   default     = {}
+}
+
+variable "dlc_target_arn" {
+  description = "Lambda function dead_letter_config target_arn"
+  type = string
+  default = null
 }

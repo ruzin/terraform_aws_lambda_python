@@ -1,21 +1,25 @@
-#!/bin/bash
+#!/bin/bash -e
 #set directory permissions
 cd $path_cwd
 dir_name=lambda_pkg_$random_string/
-mkdir $dir_name
+mkdir -p $dir_name
 
 #virtual env setup
 cd $path_module
 virtualenv -p $runtime env-$function_name
 source env-$function_name/bin/activate
 
+if [[ $source_code_path != /* ]];then
+   source_code_path=$path_cwd/$source_code_path
+fi
+
 #installing python dependencies
 FILE=$source_code_path/requirements.txt
 if [ -f $FILE ]; then
-  echo "requirement.txt file exists in source_code_path. Installing dependencies.."
+  echo "requirements.txt file exists in source_code_path. Installing dependencies.."
   pip install -q -r $FILE --upgrade
 else
-  echo "requirement.txt file does not exist. Skipping installation of dependencies."
+  echo "requirements.txt file does not exist. Skipping installation of dependencies."
 fi
 #deactivate virtualenv
 deactivate
